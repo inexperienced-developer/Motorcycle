@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c078e27f2a7cc54fbf3db7c5c661b70, type: 3}
+  m_Name: settings_collectibles
+  m_EditorClassIdentifier: 
+  m_xSpawnBounds: {x: -2, y: 7}
+  m_fuelCanPrefab: {fileID: 9000566276928035000, guid: 5cf9669eb670ee14fa88f0def7d4d5d4,
+    type: 3}
+  m_fuel_smallAmtToGain: 20
+  m_fuel_largeAmtToGain: 80
+  m_fuel_SpawnTime_ms: {x: 3000, y: 10000}
