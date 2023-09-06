@@ -30,11 +30,11 @@ public class EnemyCar : MonoBehaviour
     private void OnDisable()
     {
         m_selectedGfx?.SetActive(false);
+        EventsRoad.HitTrigger -= OnPlayerHitTrigger;
     }
 
     private void OnDestroy()
     {
-        EventsRoad.HitTrigger -= OnPlayerHitTrigger;
     }
 
     private void OnPlayerHitTrigger(RoadChunk chunk)
