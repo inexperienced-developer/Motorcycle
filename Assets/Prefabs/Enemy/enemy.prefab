@@ -73,8 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d6000aa6590cb4bb42f88dd7c2a88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1000
-  m_maxSpeed: 1000
   m_possibleCars:
   - {fileID: 441435406793882414, guid: 0f081a3de5591476bb9e6ff4dc770814, type: 3}
   - {fileID: 733145288075614299, guid: 97bbd8a97634444a2b72c8f15879a576, type: 3}
@@ -88,7 +86,8 @@ AudioSource:
   m_GameObject: {fileID: 5970764960744574456}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2421637425758899140, guid: 3c723f14c3321e34d92947d27cff7a5b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 6ace7d7e2073bca45a0af40f31967330, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

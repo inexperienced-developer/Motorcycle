@@ -25,6 +25,12 @@ public static class EventsGame
     public static event Action<float> UpdateDistance;
     public static void OnUpdateDistance(float distance) => UpdateDistance?.Invoke(distance);
 
+    public static event Action<bool> Pause;
+    public static void OnPause(bool pause) => Pause?.Invoke(pause);
+
+    public static event Action Quit;
+    public static void OnQuit() => Quit?.Invoke();
+
     public static event Action GameOver;
     public static void OnGameOver() => GameOver?.Invoke();
 
