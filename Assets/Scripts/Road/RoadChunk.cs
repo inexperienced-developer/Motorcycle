@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class RoadChunk : MonoBehaviour
 {
-    private SpawnEnvironmentProps m_envSpawner;
+    public SpawnEnvironmentProps EnvSpawner { get; private set; }
 
     private void Awake()
     {
-        m_envSpawner = GetComponentInChildren<SpawnEnvironmentProps>(true);
+        EnvSpawner = GetComponentInChildren<SpawnEnvironmentProps>(true);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -77,6 +77,7 @@ public class RoadManagerMono : MonoBehaviour
             }
         }
         RoadChunk prev = Segments[0];
+        prev.EnvSpawner.Spawn();
         Vector3 newPos = Segments[Segments.Length - 1].transform.position;
         newPos.z += 100;
         prev.transform.position = newPos;
