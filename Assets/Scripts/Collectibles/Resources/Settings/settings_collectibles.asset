@@ -18,3 +18,6 @@ MonoBehaviour:
   m_fuel_smallAmtToGain: 20
   m_fuel_largeAmtToGain: 80
   m_fuel_SpawnTime_ms: {x: 3000, y: 10000}
+  m_boostPrefab: {fileID: 1290341337729121923, guid: 7cf482aaccf24d84d851c9877c6ec629,
+    type: 3}
+  m_boost_AmtToGain: 20

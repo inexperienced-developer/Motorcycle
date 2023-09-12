@@ -2,6 +2,7 @@ using InexperiencedDeveloper.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private float m_horizontal;
     private float m_totalDistance = 0;
 
+    private float m_maxSpeed;
+    private float m_fwdSpeed;
+    private bool m_boostEnabled;
+
     private void Start()
     {
         m_player = PlayerSingleton.Instance;
@@ -24,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
         EventsGame.UpdateFuelLevel += OnUpdateFuelLevel;
         EventsGame.OutOfFuel += OnOutOfFuel;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        EventsPlayer.UseBoost += OnUseBoost;
+        m_maxSpeed = Settings.Player.MaxSpeed;
+        m_fwdSpeed = Settings.Player.FwdSpeed;
 #if UNITY_IOS || UNITY_ANDROID
         EventsMobile.Input += OnInput;
 #endif
@@ -36,10 +44,19 @@ public class PlayerMovement : MonoBehaviour
         EventsGame.UpdateFuelLevel -= OnUpdateFuelLevel;
         EventsGame.OutOfFuel -= OnOutOfFuel;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        EventsPlayer.UseBoost -= OnUseBoost;
 #if UNITY_IOS || UNITY_ANDROID
         EventsMobile.Input -= OnInput;
 #endif
         EventsPlayer.OnPlayerDestroyed();
+    }
+
+    private void OnUseBoost(bool val)
+    {
+        Debug.Log($"BOOSTED: {val}");
+        m_boostEnabled = val;
+        m_maxSpeed = val ? Settings.Player.MaxSpeed * 2 : Settings.Player.MaxSpeed;
+        m_fwdSpeed = val ? Settings.Player.FwdSpeed * 2 : Settings.Player.FwdSpeed;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -131,11 +148,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (m_dead) return;
         // To start let's just constantly move forward
-        Vector3 forwardForce = transform.forward * Settings.Player.FwdSpeed;
+        Vector3 forwardForce = transform.forward * m_fwdSpeed;
         float forwardVelocity = Vector3.Dot(m_player.Rb.velocity, transform.forward);
-        if (forwardVelocity > Settings.Player.MaxSpeed)
+        if (forwardVelocity > m_maxSpeed)
         {
-            forwardForce = -transform.forward * Settings.Player.FwdSpeed / 2;
+            forwardForce = -transform.forward * m_fwdSpeed / 2;
         }
         m_player.Rb.SafeAddForce(forwardForce * Time.fixedDeltaTime, ForceMode.Acceleration);
         Vector3 rightForce = transform.right * m_horizontal * Settings.Player.RightSpeed;

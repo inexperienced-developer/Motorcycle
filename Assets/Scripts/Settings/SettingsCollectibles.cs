@@ -16,4 +16,13 @@ public class SettingsCollectibles : ScriptableObject
     public int Fuel_LargeAmtToGain => m_fuel_largeAmtToGain;
     [SerializeField] private Vector2 m_fuel_SpawnTime_ms = new Vector2(3000, 10000);
     public Vector2 Fuel_SpawnTime_ms => m_fuel_SpawnTime_ms;
+    [SerializeField] private float m_fuel_ChanceToSpawn_percent = 75;
+    public float Fuel_ChanceToSpawn_percent => m_fuel_ChanceToSpawn_percent;
+
+    [Header("Boost Settings")]
+    [SerializeField] private BoostPickup m_boostPrefab;
+    public BoostPickup BoostPrefab => m_boostPrefab;
+    [SerializeField] private int m_boost_AmtToGain = 20;
+    public int Boost_AmtToGain => m_boost_AmtToGain;
+
 }

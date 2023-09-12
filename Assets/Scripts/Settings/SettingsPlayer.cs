@@ -29,4 +29,10 @@ public class SettingsPlayer : ScriptableObject
     [SerializeField] private float m_fuelTickMultiplier = 0.1f;
     public float FuelTickRate => m_fuelTickRate;
     public float FuelTickMultiplier => m_fuelTickMultiplier;
+
+    [Header("Boost Settings")]
+    [SerializeField] private float m_defaultStartBoost = 100;
+    [SerializeField] private float m_useBoostRate = 5;
+    public float DefaultStartBoost => m_defaultStartBoost;
+    public float UseBoostRate => m_useBoostRate;
 }
