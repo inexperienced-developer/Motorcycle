@@ -33,6 +33,8 @@ public class SettingsPlayer : ScriptableObject
     [Header("Boost Settings")]
     [SerializeField] private float m_defaultStartBoost = 100;
     [SerializeField] private float m_useBoostRate = 5;
+    [SerializeField] private float m_speedMultiplier = 3;
     public float DefaultStartBoost => m_defaultStartBoost;
     public float UseBoostRate => m_useBoostRate;
+    public float BoostSpeedMultiplier => m_speedMultiplier;
 }

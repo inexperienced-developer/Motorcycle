@@ -65,7 +65,14 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
 
     private void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q)) OnCrash();
+        if(transform.position.z > 100)
+        {
+            if (Physics.Raycast(transform.position + transform.up, -transform.up, out RaycastHit hit, 10, Settings.LayerMask.GroundOnly))
+            {
+                RoadChunk chunk = hit.collider.GetComponent<RoadChunk>();
+                EventsRoad.OnHitTrigger(chunk);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

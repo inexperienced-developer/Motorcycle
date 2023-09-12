@@ -53,10 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnUseBoost(bool val)
     {
-        Debug.Log($"BOOSTED: {val}");
         m_boostEnabled = val;
-        m_maxSpeed = val ? Settings.Player.MaxSpeed * 2 : Settings.Player.MaxSpeed;
-        m_fwdSpeed = val ? Settings.Player.FwdSpeed * 2 : Settings.Player.FwdSpeed;
+        m_maxSpeed = val ? Settings.Player.MaxSpeed * Settings.Player.BoostSpeedMultiplier : Settings.Player.MaxSpeed;
+        m_fwdSpeed = val ? Settings.Player.FwdSpeed * Settings.Player.BoostSpeedMultiplier : Settings.Player.FwdSpeed;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

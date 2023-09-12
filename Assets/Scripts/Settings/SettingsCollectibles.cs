@@ -24,5 +24,4 @@ public class SettingsCollectibles : ScriptableObject
     public BoostPickup BoostPrefab => m_boostPrefab;
     [SerializeField] private int m_boost_AmtToGain = 20;
     public int Boost_AmtToGain => m_boost_AmtToGain;
-
 }

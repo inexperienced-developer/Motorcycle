@@ -14,6 +14,6 @@ public class RoadChunk : MonoBehaviour
         if (other.gameObject.CompareTag(Tags.WHEELS)) return;
         PlayerSingleton player = other.GetComponentInParent<PlayerSingleton>();
         if (player == null) return;
-        EventsRoad.OnHitTrigger(this);
+        //EventsRoad.OnHitTrigger(this);
     }
 }

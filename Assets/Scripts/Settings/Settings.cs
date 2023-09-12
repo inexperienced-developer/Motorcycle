@@ -40,4 +40,18 @@ public static class Settings
             return s_scooterColors;
         }
     }
+
+    private static SettingsLayerMask s_layerMask;
+    public static SettingsLayerMask LayerMask
+    {
+        get
+        {
+            if (s_layerMask == null)
+            {
+                s_layerMask = Resources.Load<SettingsLayerMask>("Settings/settings_layerMask");
+            }
+            return s_layerMask;
+        }
+    }
+
 }
