@@ -6,4 +6,5 @@ public static class Tags
 {
     public const string WHEELS = "wheels";
     public const string GROUND = "ground";
+    public const string RAMP = "ramp";
 }

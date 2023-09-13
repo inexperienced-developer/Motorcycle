@@ -51,7 +51,6 @@ public class SpawnEnvironmentProps : MonoBehaviour
             while(!valid)
             {
                 randomPos = new Vector3(RandomUtils.Range(m_xRangeToSpawn), RandomUtils.Range(m_yRangeToSpawn), RandomUtils.Range(m_zRangeToSpawn));
-                Debug.Log($"RandomPos: {randomPos}");
                 valid = !(randomPos.x >= m_xRangeToIgnore.x && randomPos.x <= m_xRangeToIgnore.y);
             }
             // Raycast down to see if we are on ground

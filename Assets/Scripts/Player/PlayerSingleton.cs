@@ -67,7 +67,7 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
     {
         if(transform.position.z > 100)
         {
-            if (Physics.Raycast(transform.position + transform.up, -transform.up, out RaycastHit hit, 10, Settings.LayerMask.GroundOnly))
+            if (Physics.Raycast(transform.position + transform.up, -transform.up, out RaycastHit hit, Mathf.Infinity, Settings.LayerMask.GroundOnly))
             {
                 RoadChunk chunk = hit.collider.GetComponent<RoadChunk>();
                 EventsRoad.OnHitTrigger(chunk);
@@ -80,7 +80,8 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
         if(m_isDestroyed) return;
         if (collision.collider.CompareTag(Tags.GROUND)) return;
         if (collision.collider.CompareTag(Tags.WHEELS)) return;
-        if(collision.collider.material.name.Split(' ')[0] == "Sand")
+        if (collision.collider.CompareTag(Tags.RAMP)) return;
+        if (collision.collider.material.name.Split(' ')[0] == "Sand")
         {
             EventsGame.OnHitSand();
             return;

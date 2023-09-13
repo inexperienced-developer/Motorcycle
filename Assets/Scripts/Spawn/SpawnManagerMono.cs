@@ -2,18 +2,19 @@ using InexperiencedDeveloper.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-998)]
 public class SpawnManagerMono : MonoBehaviour
 {
-    [SerializeField] private Vector2 m_spawnDelay = new Vector2(1, 3);
+    [SerializeField] private Vector2 m_spawnDelay = new Vector2(1000, 3000);
     [SerializeField] private EnemyCar m_enemyPrefab;
 
     private List<EnemyCar> m_enemyPool;
 
-    private bool m_runSpawner = true;
+    public bool RunSpawner { get; private set; } = true;
 
     protected void Awake()
     {
@@ -42,7 +43,7 @@ public class SpawnManagerMono : MonoBehaviour
 
     protected void OnDestroy()
     {
-        m_runSpawner = false;
+        RunSpawner = false;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -62,7 +63,7 @@ public class SpawnManagerMono : MonoBehaviour
 
     private async Task SpawnCarAsync()
     {
-        while(m_runSpawner)
+        while(RunSpawner)
         {
             int nextIndex = GetFirstOpenIndex();
             EnemyCar car = null;
@@ -79,11 +80,18 @@ public class SpawnManagerMono : MonoBehaviour
             {
                 m_enemyPool.Add(Instantiate(m_enemyPrefab));
             }
-            SpawnPoint point = SpawnManager.SpawnPoints[Random.Range(0, SpawnManager.SpawnPoints.Count)];
+            SpawnPoint point = null;
+            // Potential blocker -- make sure at least one point is always open
+            while (point == null || point.Closed)
+            {
+                point = SpawnManager.RandomSpawnPoint;
+            }
             car.transform.position = point.transform.position;
             car.transform.rotation = point.transform.rotation;
             car.gameObject.SetActive(true);
             await Task.Delay((int)Random.Range(m_spawnDelay.x, m_spawnDelay.y));
         }
     }
+
+
 }

@@ -6,4 +6,6 @@ public static class SpawnManager
 {
     public static bool PlayerSpawned;
     public static List<SpawnPoint> SpawnPoints {  get; private set; } = new List<SpawnPoint>();
+
+    public static SpawnPoint RandomSpawnPoint => SpawnPoints[Random.Range(0, SpawnPoints.Count)];
 }

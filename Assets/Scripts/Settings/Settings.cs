@@ -54,4 +54,17 @@ public static class Settings
         }
     }
 
+    private static SettingsObstacles s_obstacles;
+    public static SettingsObstacles Obstacles
+    {
+        get
+        {
+            if (s_obstacles == null)
+            {
+                s_obstacles = Resources.Load<SettingsObstacles>("Settings/settings_obstacles");
+            }
+            return s_obstacles;
+        }
+    }
+
 }
