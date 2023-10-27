@@ -2,6 +2,9 @@ using InexperiencedDeveloper.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks.Sources;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_currentLean;
     private float m_horizontal;
     private float m_totalDistance = 0;
+    private int mNearMissPoints = 0;
 
     private void Start()
     {
@@ -155,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         float forwardVelocity = Vector3.Dot(m_player.Rb.velocity, transform.forward);
         m_totalDistance += forwardVelocity * Time.fixedDeltaTime;
         EventsGame.OnUpdateDistance(m_totalDistance);
+
     }
 
     private void AnimateLean()
@@ -165,5 +170,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rot = transform.localEulerAngles;
         rot.z = m_currentLean;
         transform.localRotation = Quaternion.Euler(rot);
+    }
+
+    private void UpdateScore()
+    {
+        mNearMissPoints =  mNearMissPoints += 20 ;
+        EventsGame.OnUpdateScore(mNearMissPoints);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("NearMissBox"))
+        {
+            Debug.Log("Hit the Near Miss Box");
+            NearMiss();
+        }
+    }
+
+    private void NearMiss()
+    {
+     Debug.Log("NearMiss");
+     EventsGame.OnNearMiss();
+     UpdateScore();
     }
 }

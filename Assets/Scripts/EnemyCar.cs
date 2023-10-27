@@ -57,6 +57,6 @@ public class EnemyCar : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if (!other.CompareTag(Tags.GROUND)) return;
-        //EventsRoad.OnEnemyHitTrigger(this);
+        //EventsRoad.OnEnemyHitTrigger(this); 
     }
 }
