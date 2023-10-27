@@ -1,4 +1,6 @@
 using System;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public static class EventsGame
 {
@@ -33,5 +35,14 @@ public static class EventsGame
 
     public static event Action GameOver;
     public static void OnGameOver() => GameOver?.Invoke();
+
+    public static event Action NearMiss;
+    public static void OnNearMiss() => NearMiss?.Invoke();
+    
+    public static event Action<int> UpdateScore;
+    public static void OnUpdateScore(int score) => UpdateScore?.Invoke(score);
+
+    public static event Action PickupObject;
+    public static void OnPickUp() => PickupObject?.Invoke();
 
 }

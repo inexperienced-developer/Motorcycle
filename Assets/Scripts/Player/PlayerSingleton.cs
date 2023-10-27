@@ -97,6 +97,13 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
     private void OnTriggerEnter(Collider other)
     {
         CheckCollectible(other);
+        /*
+        if (other.gameObject.CompareTag("NearMissBox"))
+        {
+            Debug.Log("Hit the Near Miss Box");
+            NearMiss();
+        }
+        */
     }
 
     private void CheckCollectible(Collider other)
@@ -116,4 +123,12 @@ public class PlayerSingleton : Singleton<PlayerSingleton>
         Rb.isKinematic = true;
         EventsGame.OnCrash();
     }
+    /*
+    private void NearMiss()
+    {
+     Debug.Log("NearMiss");
+     EventsGame.OnNearMiss();
+     EventsGame.OnUpdateScore()
+    }
+    */
 }
